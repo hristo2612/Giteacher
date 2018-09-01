@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <Container textAlign={"right"}>
       <Link to="/">
         <Header as="h1" className={h1}>
-          Github Pages
+          Giteacher
         </Header>
       </Link>
       {children}

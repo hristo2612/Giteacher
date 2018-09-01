@@ -1,9 +1,14 @@
+$green: #ff0000;
+$width: 10px;
+$height: 10px;
+
 .pull-right {
   display: flex;
   justify-content: flex-end;
 }
 
 .h1 {
-  margin-top: 10px !important;
-  margin-bottom: 20px !important;
+  color: $green !important;
+  margin-top: $width !important;
+  margin-bottom: $width !important;
 }
