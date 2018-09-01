@@ -2,7 +2,7 @@
   "name": "tutorialize-github-client",
   "version": "1.0.1",
   "main": "index.js",
-  "repository": "https://github.com/hristo2612/github-pages-with-react.git",
+  "repository": "https://github.com/hristo2612/Giteacher.git",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --env.env=dev --hot",
@@ -13,14 +13,21 @@
     "predeploy": "npm run prebuild && npm run build"
   },
   "dependencies": {
+    "@material-ui/core": "^3.0.1",
+    "@material-ui/icons": "^3.0.1",
     "react": "^16.3.2",
     "react-delay-render": "^0.1.2",
     "react-dom": "^16.3.2",
     "react-hot-loader": "^4.1.1",
     "react-loadable": "^5.3.1",
     "react-prop-types": "^0.4.0",
-    "react-router-dom": "^4.2.2",
-    "semantic-ui-react": "^0.79.1"
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "semantic-ui-react": "^0.79.1",
+    "superagent": "^3.8.3",
+    "superagent-promise": "^1.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -34,6 +41,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
     "postcss-loader": "^2.1.4",
+    "precss": "^3.1.2",
     "rimraf": "^2.6.2",
     "style-loader": "^0.20.3",
     "webpack": "^4.6.0",
