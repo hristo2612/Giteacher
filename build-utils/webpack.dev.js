@@ -28,6 +28,18 @@ const config = {
               camelCase: true,
               sourceMap: true
             }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                ctx: {
+                  autoprefixer: {
+                    browsers: 'last 2 versions'
+                  }
+                }
+              }
+            }
           }
         ]
       }
