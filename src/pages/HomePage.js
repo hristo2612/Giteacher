@@ -9,8 +9,8 @@ import Button from '@material-ui/core/Button';
 const Promise = global.Promise;
 
 const mapStateToProps = state => ({
-  appName: state.appName,
-  menuOpen: state.menuOpen
+  appName: state.common.appName,
+  menuOpen: state.common.menuOpen
 });
 
 const mapDispatchToProps = dispatch => ({
