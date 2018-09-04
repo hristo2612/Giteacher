@@ -1,9 +1,8 @@
 import React from 'react';
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, Router, Route } from 'react-router-dom';
+import history from '../history';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
-import store from '../store';
-import { Provider } from 'react-redux';
 
 import Home from '../components/Home';
 import Loading from './Loading';
@@ -37,8 +36,7 @@ const NotFound = Loadable({
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -50,8 +48,6 @@ const App = () => {
           </Switch>
         </Layout>
       </Router>
-    </Provider>
-
   );
 };
 

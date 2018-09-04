@@ -1,106 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import { listSection } from './tileData';
+import { CLOSE_MENU } from '../../constants/actionTypes';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   list: {
-    width: 250,
+    width: 250
   },
-  fullList: {
-    width: 'auto',
-  },
+  centered: {
+    width: 'fit-content',
+    margin: 'auto',
+    paddingTop: '20px',
+    paddingBottom: '15px'
+  }
 };
 
+const mapStateToProps = state => ({
+  menuOpen: state.common.menuOpen
+});
+
+const mapDispatchToProps = dispatch => ({
+  onCloseMenu: () => dispatch({
+    type: CLOSE_MENU
+  })
+});
+
 class TemporaryDrawer extends React.Component {
-  state = {
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState ({left: nextProps.left});
-  }
-
-  toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open,
-    });
-  };
 
   render() {
-    const { classes, closeMenu, left } = this.props;
-
-    const sideList = (
+    const { classes, onCloseMenu, menuOpen } = this.props;
+    const list = (
       <div className={classes.list}>
-        <List>{mailFolderListItems}</List>
-        <Divider />
-        <List>{otherMailFolderListItems}</List>
-      </div>
-    );
-
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>{mailFolderListItems}</List>
-        <Divider />
-        <List>{otherMailFolderListItems}</List>
+        <List>{listSection}</List>
       </div>
     );
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
-        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
-        <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
-        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
-        <Drawer open={left} onClose={closeMenu}>
+        <Drawer open={menuOpen} onClose={onCloseMenu}>
           <div
             tabIndex={0}
             role="button"
-            onClick={closeMenu}
-            onKeyDown={closeMenu}
+            onClick={onCloseMenu}
+            onKeyDown={onCloseMenu}
           >
-            {sideList}
-          </div>
-        </Drawer>
-        <Drawer anchor="top" open={this.state.top} onClose={this.toggleDrawer('top', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('top', false)}
-            onKeyDown={this.toggleDrawer('top', false)}
-          >
-            {fullList}
-          </div>
-        </Drawer>
-        <Drawer
-          anchor="bottom"
-          open={this.state.bottom}
-          onClose={this.toggleDrawer('bottom', false)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('bottom', false)}
-            onKeyDown={this.toggleDrawer('bottom', false)}
-          >
-            {fullList}
-          </div>
-        </Drawer>
-        <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('right', false)}
-            onKeyDown={this.toggleDrawer('right', false)}
-          >
-            {sideList}
+            <Typography className={classes.centered} variant="title" color="inherit">
+                Giteacher
+            </Typography>
+            {list}
           </div>
         </Drawer>
       </div>
@@ -112,4 +64,4 @@ TemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TemporaryDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TemporaryDrawer));

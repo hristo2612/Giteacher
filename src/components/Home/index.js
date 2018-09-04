@@ -15,21 +15,19 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onLoad: (payload) => dispatch({ type: 'HOME_PAGE_LOADED', payload }),
-  openMenu: (payload) => dispatch({type: 'OPEN_MENU', payload}),
-  closeMenu: (payload) => dispatch({type: 'CLOSE_MENU', payload})
+  openMenu: (payload) => dispatch({ type: 'OPEN_MENU', payload }),
+  closeMenu: (payload) => dispatch({ type: 'CLOSE_MENU', payload })
 });
 
 const Home = (props) => {
   return (
     <div>
-      <div>
-        <p>{props.appName}</p>
-        <p>
-          <Link to="/dynamic">
-            <Button variant="contained" color="primary">Dynamic Page</Button>
-          </Link>
-        </p>
-      </div>
+      <p>{props.appName}</p>
+      <p>
+        <Link to="/@a random user">
+          <Button variant="contained" color="primary">User Page</Button>
+        </Link>
+      </p>
     </div>
   );
 };
