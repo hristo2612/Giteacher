@@ -5,17 +5,33 @@ import Loadable from 'react-loadable';
 import store from '../store';
 import { Provider } from 'react-redux';
 
-
-import HomePage from '../pages/HomePage';
+import Home from '../components/Home';
 import Loading from './Loading';
+import Layout from './Layout';
 
-const LoginPage = Loadable({
-  loader: () => import(/* webpackChunkName:'LoginPage' */ '../pages/LoginPage'),
+const Login = Loadable({
+  loader: () => import(/* webpackChunkName:'Login' */ '../components/Login'),
   loading: Loading,
 });
 
-const NotFoundPage = Loadable({
-  loader: () => import(/* webpackChunkName:'NotFoundPage' */ '../pages/NotFoundPage'),
+const Register = Loadable({
+  loader: () => import(/* webpackChunkName:'Register' */ '../components/Register'),
+  loading: Loading,
+});
+
+const Tutorial = Loadable({
+  loader: () => import(/* webpackChunkName:'Tutorial' */ '../components/Tutorial'),
+  loading: Loading,
+});
+
+const Profile = Loadable({
+  loader: () => import(/* webpackChunkName:'Profile' */ '../components/Profile'),
+  loading: Loading,
+});
+
+
+const NotFound = Loadable({
+  loader: () => import(/* webpackChunkName:'NotFound' */ '../components/NotFound'),
   loading: Loading
 });
 
@@ -23,13 +39,16 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div>
+        <Layout>
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/dynamic" component={LoginPage} />
-            <Route component={NotFoundPage} />
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/tutorial" component={Tutorial} />
+            <Route path="/@:username" component={Profile} />
+            <Route component={NotFound} />
           </Switch>
-        </div>
+        </Layout>
       </Router>
     </Provider>
 
