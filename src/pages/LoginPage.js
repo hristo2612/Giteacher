@@ -1,9 +1,9 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
 
-import Layout from './Layout';
+import Layout from '../components/Layout';
 
-const DynamicPage = () => {
+const LoginPage = () => {
   return (
     <Layout>
       <Header as="h2">Dynamically Loaded Page</Header>
@@ -12,4 +12,4 @@ const DynamicPage = () => {
   );
 };
 
-export default DynamicPage;
+export default LoginPage;
