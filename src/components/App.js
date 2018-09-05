@@ -1,12 +1,14 @@
 import React from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import history from '../history';
+import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 
 import Home from '../components/Home';
 import Loading from './Loading';
 import Layout from './Layout';
+import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
 
 const Login = Loadable({
   loader: () => import(/* webpackChunkName:'Login' */ '../components/Login'),
@@ -34,21 +36,52 @@ const NotFound = Loadable({
   loading: Loading
 });
 
-const App = () => {
-  return (
-      <Router history={history}>
-        <Layout>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/tutorial" component={Tutorial} />
-            <Route path="/@:username" component={Profile} />
-            <Route component={NotFound} />
-          </Switch>
+const mapStateToProps = (state) => ({
+  appName: state.common.appName,
+  appLoaded: state.common.appLoaded,
+  currentUser: state.common.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoad: (payload, token) =>
+    dispatch({ type: APP_LOAD, payload, token })
+})
+
+class App extends React.Component {
+  componentWillMount() {
+    const token = window.localStorage.getItem('jwt');
+    if (token) {
+      agent.setToken(token);
+    }
+
+    this.props.onLoad(token ? agent.Auth.current() : null, token);
+  }
+  render() {
+    if (this.props.appLoaded) {
+      return (
+        <Router history={history}>
+          <Layout>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/tutorial" component={Tutorial} />
+              <Route path="/@:username" component={Profile} />
+              <Route component={NotFound} />
+            </Switch>
+          </Layout>
+        </Router>
+    );
+    }
+    return (
+      <div>
+        <Layout 
+          appName={this.props.appName} 
+          currentUser={this.props.currentUser}>
         </Layout>
-      </Router>
-  );
+      </div>
+    )
+  }
 };
 
-export default hot(module)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App));

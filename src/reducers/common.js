@@ -1,6 +1,5 @@
 import {
     APP_LOAD,
-    REDIRECT,
     OPEN_MENU,
     CLOSE_MENU,
     LOGOUT,
@@ -13,14 +12,21 @@ import {
 
 const defaultState = {
     appName: 'Giteacher',
+    token: null,
     menuOpen: false,
-    tkn: null
+    currentUser: null,
+    goTo: null,
 }
 
 export default (state = defaultState, action) => {
     switch (action.type) {
         case APP_LOAD:
-            return {};
+            return {
+                ...state,
+                token: action.token || null,
+                appLoaded: true,
+                currentUser: action.payload ? action.payload.user : null
+            };
         case OPEN_MENU:
             return {
                 ...state, menuOpen: true
@@ -29,17 +35,19 @@ export default (state = defaultState, action) => {
             return {
                 ...state, menuOpen: false
             };
-        case REDIRECT:
-            return {};
         case LOGOUT:
-            return {};
         case REGISTER:
-            return {};
-        case HOME_PAGE_UNLOADED:
-        case PROFILE_PAGE_UNLOADED:
-        case REGISTER_PAGE_UNLOADED:
-        case LOGIN_PAGE_UNLOADED:
-            return {};
+            return {
+                ...state,
+                goTo: action.error ? null : '/',
+                token: action.error ? null : action.payload.user.token,
+                currentUser: action.error ? null : action.payload.user
+            };
+        // case HOME_PAGE_UNLOADED:
+        // case PROFILE_PAGE_UNLOADED:
+        // case REGISTER_PAGE_UNLOADED:
+        // case LOGIN_PAGE_UNLOADED:
+        //     return {};
         default:
             return state;
     }
