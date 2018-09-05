@@ -10,12 +10,12 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   list: {
-    width: 250
+    width: 230
   },
   centered: {
     width: 'fit-content',
-    margin: 'auto',
-    paddingTop: '20px',
+    marginLeft: '72px',
+    paddingTop: '18px',
     paddingBottom: '15px'
   }
 };

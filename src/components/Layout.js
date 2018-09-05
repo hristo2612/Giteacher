@@ -6,20 +6,16 @@ import SidebarMenu from '../components/Menu/';
 
 import { pullRight, h1 } from './Layout.css';
 
+import { Header__light, Header__dark } from '../styling/App.css';
 
 
-const Layout = ({ children, openMenu, closeMenu, menuOpen, appName }) => {
+const Layout = ({ children, openMenu, closeMenu }) => {
   return (
     <div>
-      <SidebarMenu closeMenu={closeMenu} left={menuOpen} />
       <AppBar openMenu={openMenu} />
-      <Container textAlign={"right"}>
-        <Divider />
+      <SidebarMenu closeMenu={closeMenu} />
+      <Container textAlign={"right"} className={Header__light}>
         {children}
-        <Divider />
-        <p className={pullRight}>
-          Made with <Icon name="heart" color="red" />
-        </p>
       </Container>
     </div>
   );
