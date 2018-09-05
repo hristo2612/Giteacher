@@ -7,9 +7,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import Profile from '@material-ui/icons/AccountCircle';
 import Lock from '@material-ui/icons/Lock';
+import VpnKey from '@material-ui/icons/VpnKey';
 import Button from '@material-ui/core/Button';
+import Email from '@material-ui/icons/Email';
 import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
@@ -28,6 +30,20 @@ function InputWithIcon(props) {
         <form style={{ width: '290px', margin: 'auto' }}>
             <TextField
                 className={classes.margin}
+                id="email"
+                label="Email"
+                autoComplete="email"
+                style={{ width: '280px' }}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <Email />
+                        </InputAdornment>
+                    ),
+                }}
+            />
+            <TextField
+                className={classes.margin}
                 id="username"
                 label="Username"
                 autoComplete="username"
@@ -35,16 +51,31 @@ function InputWithIcon(props) {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <AccountCircle />
+                            <Profile />
                         </InputAdornment>
                     ),
                 }}
             />
-            <br/>
             <TextField
                 className={classes.margin}
                 id="password"
                 label="Password"
+                autoComplete="password"
+                type={"password"}
+                style={{ width: '280px' }}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <VpnKey />
+                        </InputAdornment>
+                    ),
+                }}
+            />
+            <br />
+            <TextField
+                className={classes.margin}
+                id="repeat-password"
+                label="Repeat Password"
                 autoComplete="password"
                 type={"password"}
                 style={{ width: '280px' }}
@@ -56,7 +87,7 @@ function InputWithIcon(props) {
                     ),
                 }}
             />
-          <Button variant="contained" color="primary">Sign In</Button>
+            <Button variant="contained" color="primary">Sign Up</Button>
         </form>
     );
 }

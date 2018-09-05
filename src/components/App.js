@@ -4,6 +4,7 @@ import history from '../history';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import Home from '../components/Home';
 import Loading from './Loading';
@@ -36,6 +37,14 @@ const NotFound = Loadable({
   loading: Loading
 });
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#24292E'
+    }
+  }
+});
+
 const mapStateToProps = (state) => ({
   appName: state.common.appName,
   appLoaded: state.common.appLoaded,
@@ -60,23 +69,25 @@ class App extends React.Component {
     if (this.props.appLoaded) {
       return (
         <Router history={history}>
-          <Layout>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/tutorial" component={Tutorial} />
-              <Route path="/@:username" component={Profile} />
-              <Route component={NotFound} />
-            </Switch>
-          </Layout>
+          <MuiThemeProvider theme={theme}>
+            <Layout>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/tutorial" component={Tutorial} />
+                <Route path="/@:username" component={Profile} />
+                <Route component={NotFound} />
+              </Switch>
+            </Layout>
+          </MuiThemeProvider>
         </Router>
-    );
+      );
     }
     return (
       <div>
-        <Layout 
-          appName={this.props.appName} 
+        <Layout
+          appName={this.props.appName}
           currentUser={this.props.currentUser}>
         </Layout>
       </div>

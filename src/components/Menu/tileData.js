@@ -20,11 +20,11 @@ export const listSection = (
       </ListItemIcon>
       <ListItemText primary="Sign In" />
     </ListItem>
-    <ListItem button onClick={handleOnClick('/aboutUs')}>
+    <ListItem button onClick={handleOnClick('/register')}>
       <ListItemIcon>
         <AboutUs />
       </ListItemIcon>
-      <ListItemText primary="About Us" />
+      <ListItemText primary="Register" />
     </ListItem>
   </div>
 );

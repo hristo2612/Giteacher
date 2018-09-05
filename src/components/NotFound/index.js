@@ -4,8 +4,9 @@ import { Icon, Header } from 'semantic-ui-react';
 const NotFound = () => {
   return (
     <div>
-      <Icon name="minus circle" size="big" />
-      <strong>Page not found!</strong>
+      <Header style={{ textAlign: 'center' }} as="h2">
+        Not found
+      </Header>
     </div>
   );
 };

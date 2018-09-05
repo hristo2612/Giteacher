@@ -42,6 +42,7 @@ class Login extends React.Component {
     const password = this.props.password;
     return (
       <div>
+        <Header style={{textAlign: 'center'}} as="h2">Login</Header>
         <Form/>
       </div>
     );
