@@ -5,7 +5,7 @@ class ErrorList extends React.Component {
         const errors = this.props.errors;
         if (errors) {
             return (
-                <ul>
+                <ul style={{color: '#B85C5C', fontWeight: 'bold'}}>
                     {
                         Object.keys(errors).map(key => {
                             return (

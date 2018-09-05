@@ -14,7 +14,7 @@ const Layout = ({ children, openMenu, closeMenu }) => {
     <div>
       <AppBar openMenu={openMenu} />
       <SidebarMenu closeMenu={closeMenu} />
-      <Container textAlign={"right"} className={Header__light}>
+      <Container className={Header__light}>
         {children}
       </Container>
     </div>

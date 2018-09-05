@@ -8,6 +8,7 @@ import {
   LOGIN_PAGE_UNLOADED
 } from '../../constants/actionTypes';
 import Form from './Form';
+import ErrorList from '../ErrorList';
 
 const mapStateToProps = state => ({ ...state.auth });
 
@@ -17,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   onChangePassword: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
   onSubmit: (email, password) =>
-    dispatch({ type: LOGIN, payload: agent.Auth.login(email, password) }),
+    dispatch({ type: LOGIN, payload: agent.User.login(email, password) }),
   onUnload: () =>
     dispatch({ type: LOGIN_PAGE_UNLOADED })
 });
@@ -42,8 +43,9 @@ class Login extends React.Component {
     const password = this.props.password;
     return (
       <div>
-        <Header style={{textAlign: 'center'}} as="h2">Login</Header>
-        <Form/>
+        <h2 style={{textAlign: 'center'}}>Login</h2>
+        <ErrorList errors = {this.props.errors} />
+        <Form onSubmit={this.submitForm(email, password)} email={email} password={password} changeEmail={this.changeEmail} changePassword={this.changePassword}/>
       </div>
     );
   }

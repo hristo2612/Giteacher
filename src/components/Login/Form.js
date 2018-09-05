@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import Email from '@material-ui/icons/Email';
 import Lock from '@material-ui/icons/Lock';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
     margin: {
@@ -22,20 +17,22 @@ const styles = theme => ({
 });
 
 function InputWithIcon(props) {
-    const { classes } = props;
+    const { classes, email, password, changeEmail, changePassword, onSubmit } = props;
 
     return (
         <form style={{ width: '290px', margin: 'auto' }}>
             <TextField
                 className={classes.margin}
-                id="username"
-                label="Username"
-                autoComplete="username"
+                id="email"
+                label="Email"
+                autoComplete="email"
                 style={{ width: '280px' }}
+                value={email || ''}
+                onChange={changeEmail}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <AccountCircle />
+                            <Email />
                         </InputAdornment>
                     ),
                 }}
@@ -48,6 +45,8 @@ function InputWithIcon(props) {
                 autoComplete="password"
                 type={"password"}
                 style={{ width: '280px' }}
+                value={password || ''}
+                onChange={changePassword}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -56,7 +55,7 @@ function InputWithIcon(props) {
                     ),
                 }}
             />
-          <Button variant="contained" color="primary">Sign In</Button>
+          <Button onClick={onSubmit} type="submit" variant="contained" color="primary">Sign In</Button>
         </form>
     );
 }

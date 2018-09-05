@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import history from '../history';
+import agent from '../agent';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
@@ -63,7 +64,7 @@ class App extends React.Component {
       agent.setToken(token);
     }
 
-    this.props.onLoad(token ? agent.Auth.current() : null, token);
+    this.props.onLoad(token ? agent.User.get() : null, token);
   }
   render() {
     if (this.props.appLoaded) {
