@@ -1,0 +1,14 @@
+@value dark__background-main, dark__text-main from './dark/colors.css';
+@value light__background-main, light__text-main from './light/colors.css';
+
+.Header__light {
+    composes: header from './common/header.css';
+    background: light__background-main !important;
+    color light__text-main: 
+}
+
+.Header__dark {
+    composes: header from './common/header.css';
+    background: dark__background-main !important;
+    color: dark__text-main !important;
+}
