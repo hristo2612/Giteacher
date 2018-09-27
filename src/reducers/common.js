@@ -2,6 +2,7 @@ import {
     APP_LOAD,
     OPEN_MENU,
     CLOSE_MENU,
+    LOGIN,
     LOGOUT,
     REGISTER,
     HOME_PAGE_UNLOADED,
@@ -15,7 +16,6 @@ const defaultState = {
     token: null,
     menuOpen: false,
     currentUser: null,
-    goTo: null,
 }
 
 export default (state = defaultState, action) => {
@@ -35,11 +35,10 @@ export default (state = defaultState, action) => {
             return {
                 ...state, menuOpen: false
             };
-        case LOGOUT:
+        case LOGIN:
         case REGISTER:
             return {
                 ...state,
-                goTo: action.error ? null : '/',
                 token: action.error ? null : action.payload.user.token,
                 currentUser: action.error ? null : action.payload.user
             };
