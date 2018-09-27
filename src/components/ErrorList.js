@@ -5,17 +5,20 @@ class ErrorList extends React.Component {
         const errors = this.props.errors;
         if (errors) {
             return (
-                <ul style={{color: '#B85C5C', fontWeight: 'bold'}}>
-                    {
-                        Object.keys(errors).map(key => {
-                            return (
-                                <li key={key}>
-                                    {key} {errors[key]}
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
+                // <ul style={{color: '#B85C5C', fontWeight: 'bold'}}>
+                //     {
+                //         Object.keys(errors).map(key => {
+                //             return (
+                //                 <li key={key}>
+                //                     {key} {errors[key]}
+                //                 </li>
+                //             );
+                //         })
+                //     }
+                // </ul>
+                <div style={{textAlign: 'center', fontWeight: 'bold', color: '#ff0000'}}>
+                    {'A problem occured, try again in a bit ( Check your input )'}
+                </div>
             );
         } else {
             return null;
