@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'http://localhost:4200';
+const API_ROOT = process.env.NODE_ENV === 'production' ? 'https://api.gitteacher.com' : 'http://localhost:4200';
 
 const responseBody = res => res.body;
 
@@ -32,8 +32,8 @@ const User = {
         requests.put('/users/user', { user }),
     login: (email, password) =>
         requests.post('/users/login', { user: { email, password } }),
-    register: (username, email, password) =>
-        requests.post('/users/register', { user: { username, email, password } }),
+    register: (email, username, password) =>
+        requests.post('/users/register', { user: { email, username, password } }),
     update: user =>
         requests.put('/users/user', { user }),
 }
