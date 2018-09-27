@@ -17,7 +17,7 @@ const styles = theme => ({
 });
 
 function InputWithIcon(props) {
-    const { classes, email, password, changeEmail, changePassword, onSubmit } = props;
+    const { classes, email, password, changeEmail, changePassword, onSubmit, inProgress } = props;
 
     return (
         <form style={{ width: '290px', margin: 'auto' }}>
@@ -55,7 +55,7 @@ function InputWithIcon(props) {
                     ),
                 }}
             />
-          <Button onClick={onSubmit} type="submit" variant="contained" color="primary">Sign In</Button>
+          <Button onClick={onSubmit} disabled={inProgress} type="submit" variant="contained" color="primary">Sign In</Button>
         </form>
     );
 }

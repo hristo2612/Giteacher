@@ -24,7 +24,7 @@ const styles = theme => ({
 });
 
 function InputWithIcon(props) {
-    const { classes } = props;
+    const { classes, email, username, password, changeEmail, changeUsername, changePassword, onSubmit, inProgress } = props;
 
     return (
         <form style={{ width: '290px', margin: 'auto' }}>
@@ -34,6 +34,8 @@ function InputWithIcon(props) {
                 label="Email"
                 autoComplete="email"
                 style={{ width: '280px' }}
+                value={email || ''}
+                onChange={changeEmail}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -48,6 +50,8 @@ function InputWithIcon(props) {
                 label="Username"
                 autoComplete="username"
                 style={{ width: '280px' }}
+                value={username || ''}
+                onChange={changeUsername}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -63,6 +67,8 @@ function InputWithIcon(props) {
                 autoComplete="password"
                 type={"password"}
                 style={{ width: '280px' }}
+                value={password || ''}
+                onChange={changePassword}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -79,6 +85,8 @@ function InputWithIcon(props) {
                 autoComplete="password"
                 type={"password"}
                 style={{ width: '280px' }}
+                value={password || ''}
+                onChange={changePassword}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
@@ -87,7 +95,7 @@ function InputWithIcon(props) {
                     ),
                 }}
             />
-            <Button variant="contained" color="primary">Sign Up</Button>
+            <Button onClick={onSubmit} disabled={inProgress} variant="contained" color="primary">Sign Up</Button>
         </form>
     );
 }

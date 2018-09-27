@@ -1,7 +1,7 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
@@ -10,7 +10,10 @@ import {
 import Form from './Form';
 import ErrorList from '../ErrorList';
 
-const mapStateToProps = state => ({ ...state.auth });
+const mapStateToProps = state => ({ 
+  ...state.auth, 
+  currentUser: state.common.currentUser
+});
 
 const mapDispatchToProps = dispatch => ({
   onChangeEmail: value =>
@@ -41,11 +44,18 @@ class Login extends React.Component {
   render() {
     const email = this.props.email;
     const password = this.props.password;
+    const inProgress = this.props.inProgress;
+    const currentUser = this.props.currentUser;
+
+    if (currentUser) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div>
         <h2 style={{textAlign: 'center'}}>Login</h2>
         <ErrorList errors = {this.props.errors} />
-        <Form onSubmit={this.submitForm(email, password)} email={email} password={password} changeEmail={this.changeEmail} changePassword={this.changePassword}/>
+        <Form onSubmit={this.submitForm(email, password)} email={email} password={password} changeEmail={this.changeEmail} changePassword={this.changePassword} inProgress={inProgress}/>
       </div>
     );
   }
