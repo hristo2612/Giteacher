@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
-import Email from '@material-ui/icons/Email';
+import PersonPin from '@material-ui/icons/PersonPin';
 import Lock from '@material-ui/icons/Lock';
 import Button from '@material-ui/core/Button';
 
@@ -24,7 +24,7 @@ function InputWithIcon(props) {
             <TextField
                 className={classes.margin}
                 id="email"
-                label="Email"
+                label="Email/Username"
                 autoComplete="email"
                 style={{ width: '280px' }}
                 value={email || ''}
@@ -32,7 +32,7 @@ function InputWithIcon(props) {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <Email />
+                            <PersonPin />
                         </InputAdornment>
                     ),
                 }}
