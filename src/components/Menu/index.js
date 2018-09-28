@@ -14,8 +14,8 @@ const styles = {
   },
   centered: {
     width: 'fit-content',
-    marginLeft: '72px',
-    paddingTop: '18px',
+    marginLeft: '80px',
+    paddingTop: '22px',
     paddingBottom: '15px'
   }
 };
