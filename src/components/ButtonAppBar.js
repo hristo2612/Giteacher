@@ -70,7 +70,7 @@ const ButtonAppBar = (props) => {
               <MenuIcon />
             </IconButton>
             <Typography onClick={() => { history.push('/') }} variant="title" color="inherit" className={classes.logo}>
-              Giteacher
+              Gitteacher
             </Typography>
             <div className={classes.flex}></div>
             <Button onClick={() => { history.push('/login') }} color="inherit">

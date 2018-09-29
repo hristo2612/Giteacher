@@ -1,8 +1,8 @@
 {
-  "name": "tutorialize-github-client",
+  "name": "gitteacher-client",
   "version": "1.0.1",
   "main": "index.js",
-  "repository": "https://github.com/hristo2612/Giteacher.git",
+  "repository": "https://github.com/hristo2612/Gitteacher-Client.git",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --env.env=dev --hot",
@@ -27,7 +27,6 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
-    "semantic-ui-react": "^0.79.1",
     "superagent": "^3.8.3",
     "superagent-promise": "^1.1.0"
   },

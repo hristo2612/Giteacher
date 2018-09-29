@@ -12,7 +12,7 @@ import {
 } from "../constants/actionTypes";
 
 const defaultState = {
-    appName: 'Giteacher',
+    appName: 'Gitteacher',
     token: null,
     menuOpen: false,
     currentUser: null,
